@@ -71,6 +71,16 @@ function bannerEffect() {
   }
   startTime();
 
+  var setIndicator = function(index){
+    var indicators = document.querySelector('.jd_bannerList').querySelectorAll('li');
+    for(var i = 0;i<indicators.length;i++){
+      indicators[i].classList.remove('active');
+    }
+    indicators[index-1].classList.add("active");
+  }
+
+
+
   // 手动轮播
     var banner = document.querySelector(".jd_banner");
     var startX, moveX, distanceX;
@@ -126,7 +136,7 @@ function bannerEffect() {
         }
         imgBox.style.transition = "left 0.3s ease-in-out";
         imgBox.style.left = -index * 100 + "%";
-        distanceX = 0;
+        
       } else if (Math.abs(distanceX) > 0) {
         // flag = false;
         imgBox.style.transition = "left 0.3s ease-in-out";
@@ -135,6 +145,9 @@ function bannerEffect() {
       // setTimeout(function(){
       //   flag = true;
       // },500)
+      startX = 0;
+      moveX = 0;
+      distanceX = 0;
       startTime();
     });
   
@@ -154,6 +167,7 @@ function bannerEffect() {
         /*设置偏移*/
         imgBox.style.left = -index * 100 + "%";
       }
+      setIndicator(index);
     });
   
 }
